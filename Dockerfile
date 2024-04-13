@@ -1,9 +1,18 @@
+#
+# Build stage
+#
+FROM maven:3.8.3-openjdk-17 AS build
+WORKDIR /app
+COPY . /app/
+RUN mvn clean package
 
-
-FROM maven:3-eclipse-temurin-17 AS build
-COPY . .
-RUN mvn clean package -Pprod -DskipTests
-FROM eclipse-temurin:17-alpine
-COPY --from=build /target/backendaccountant-0.0.1-SNAPSHOT.jar demo.jar
+#
+# Package stage
+#
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
-ENTRYPOINT [“java”,“-jar”,“demo.jar”]
+ENTRYPOINT ["java","-jar","app.jar"]
+
+
