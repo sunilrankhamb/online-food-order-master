@@ -5,27 +5,28 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Login</title>
+<link href="CSS/index_bg.css" type="text/css" rel="stylesheet">
 <%@ include file="./components/common_cs_js.jsp"%>
 </head>
-<body>
+<body class="bg">
 <%@ include file="./components/navbar.jsp"%>
 <div class="container-fluid">
   <div class="row mt-2">
        <div class="col-md-4 offset-md-4 admin" >
-            <div class="card">
+            <div class="form-container">
                 <%@ include file="./components/message.jsp"%>
                 <div class="card-body px-5">
                     <img src="resources/images/login logo.png" class="rounded mx-auto d-block" alt="img" height="90px" width="90px">
-                    <h3 class="text-center my-3">Admin Login</h3>
+                    <h3 class="header">Admin Login</h3>
             <form action="adminlogin" method="post">
                  <div class="form-group">
-                     <label for="email">User name</label>
-                     <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="emailid" placeholder="Enter email id.." required>
+                     <label for="email"><b style="color: black;">User Name</b></label>
+                     <input type="text" class="input-box" id="username" aria-describedby="emailHelp" name="emailid" placeholder="Enter email id.." required>
                  </div>
               
                  <div class="form-group">
-                     <label for="password">Password</label>
-                     <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password" placeholder="Enter password.." required>
+                     <label for="password"><b style="color: black;">Password</b></label>
+                     <input type="password" class="input-box" id="password" aria-describedby="emailHelp" name="password" placeholder="Enter password.." required>
                      <small id="passwordHelpInline" class="text-muted">
                         Must be 8-20 characters long.
                      </small>
