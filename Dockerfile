@@ -1,10 +1,17 @@
-FROM maven:3.8.5-openjdk-17 AS build
-COPY . .
+#
+# Build stage
+#
+FROM maven:3.8.3-openjdk-17 AS build
+WORKDIR /app
+COPY . /app/
 RUN mvn clean package -DskipTests
 
-FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/online-food-order-0.0.1-SNAPSHOT.jar online-food-order.jar
+
+#
+# Package stage
+#
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","online-food-order.jar"]
-
-
+ENTRYPOINT ["java","-jar","app.jar"]
